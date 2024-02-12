@@ -1,0 +1,490 @@
+.logo {
+  font-size: 2.4rem;
+  font-weight: 800;
+  text-decoration: none;
+
+  &:visited {
+    color: inherit;
+  }
+}
+
+.search {
+  display: flex;
+  justify-content: flex-start;
+  flex: 0 0 42%;
+
+  &__input {
+    font-family: inherit;
+    font-size: 1.8rem;
+    color: var(--color-search-text);
+    background-color: var(--color-white);
+    border: none;
+    padding: 0.8rem 0.8rem 0.8rem 1.2rem;
+    width: 40%;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+      background-color: var(--color-white);
+    }
+
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      color: var(--color-search-text);
+    }
+  }
+
+  &__input:focus + &__button {
+    background-color: var(--color-white);
+  }
+
+  &__button {
+    border: none;
+    background-color: var(--color-white);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+  &__icon {
+    margin-left: 1.5rem;
+  }
+}
+
+.user-nav {
+  display: flex;
+  flex: 0 0 14%;
+
+  & > * {
+    padding: 0 0.8rem;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__cart {
+    &-amount {
+      margin-left: 1rem;
+    }
+  }
+
+  &__account {
+    &-name {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.filter__search {
+  display: flex;
+  margin-bottom: 1.5rem;
+
+  &__input {
+    font-family: inherit;
+    font-size: 1.4rem;
+    color: var(--color-search-text);
+    background-color: #f7f7f7;
+    border: none;
+    padding: 0.8rem 0.8rem 0.8rem 1.2rem;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+    }
+  }
+
+  &__button {
+    border: none;
+    background-color: #f7f7f7;
+
+    &:focus {
+      outline: none;
+    }
+  }
+  &__icon {
+    margin-left: 1.5rem;
+  }
+}
+
+.filter__sort {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2.8rem;
+  margin-top: 2.6rem;
+
+  &-label {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: var(--color-search-text);
+  }
+
+  &-box {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    box-shadow: var(--filter-box-shadow);
+    padding: 1.5rem;
+    width: 22.2rem;
+    position: relative;
+
+    > label {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--color-text);
+
+      &:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
+
+      > input {
+        margin-right: 0.9rem;
+      }
+    }
+  }
+}
+
+.filter__brands {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2.8rem;
+  margin-top: 2.6rem;
+
+  &-label {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: var(--color-search-text);
+  }
+
+  &-box {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    box-shadow: var(--filter-box-shadow);
+    padding: 1.5rem;
+    width: 22.2rem;
+    position: relative;
+
+    > label {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--color-text);
+
+      &:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
+
+      > input {
+        margin-right: 0.9rem;
+      }
+    }
+  }
+}
+
+.filter__model {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2.8rem;
+  margin-top: 2.6rem;
+
+  &-label {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: var(--color-search-text);
+  }
+
+  &-box {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    box-shadow: var(--filter-box-shadow);
+    padding: 1.5rem;
+    width: 22.2rem;
+    position: relative;
+
+    > label {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--color-text);
+
+      &:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
+
+      > input {
+        margin-right: 0.9rem;
+      }
+    }
+  }
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 18rem;
+  background-color: var(--color-white);
+  margin: 1.5rem;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1.4rem;
+  box-shadow: var(--shadow-light);
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &__information {
+    display: flex;
+    flex-direction: column;
+
+    &-image {
+      width: 100%;
+    }
+
+    &-price {
+      margin: 1.5rem 0;
+      color: var(--color-blue);
+      font-weight: inherit;
+      font-size: inherit;
+      text-decoration: none;
+    }
+
+    &-name {
+      margin-bottom: 1.5rem;
+      font-weight: inherit;
+      font-size: inherit;
+
+      &:visited {
+        color: inherit;
+      }
+    }
+  }
+
+  &-add {
+    align-self: stretch;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 0.8rem 1.6rem;
+    border: none;
+    border-radius: 3px;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background-color: rgba(42, 88, 254, 0.8);
+    }
+
+    &:active {
+      transform: scale(1.04);
+    }
+  }
+}
+
+.overview__cart {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2.8rem;
+  margin-top: 2.6rem;
+
+  &-label {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: var(--color-search-text);
+  }
+
+  &-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--color-white);
+    box-shadow: var(--filter-box-shadow);
+    padding: 1.5rem;
+    width: 22.2rem;
+  }
+
+  &__product {
+    display: flex;
+    flex-direction: column;
+
+    &-name {
+      font-size: 1.2rem;
+      color: var(--color-text);
+    }
+
+    &-price {
+      font-size: 1rem;
+      color: var(--color-blue);
+    }
+  }
+
+  &__quantity {
+    display: flex;
+    flex-direction: row;
+
+    &-decrement {
+      height: 2.5rem;
+      width: 2.5rem;
+      font-weight: 600;
+      font-size: 1.6rem;
+      text-align: center;
+      border: none;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+
+    &-number {
+      height: 2.5rem;
+      width: 2.5rem;
+      font-size: 1.8rem;
+      text-align: center;
+      background-color: var(--color-blue);
+      color: var(--color-white);
+    }
+
+    &-increment {
+      height: 2.5rem;
+      width: 2.5rem;
+      font-size: 1.6rem;
+      text-align: center;
+      border: none;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+}
+
+.overview__checkout {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2.8rem;
+  margin-top: 2.6rem;
+
+  &-label {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: var(--color-search-text);
+  }
+
+  &-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--color-white);
+    box-shadow: var(--filter-box-shadow);
+    padding: 1.5rem;
+    width: 22.2rem;
+  }
+
+  &-total {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  &-price {
+    color: var(--color-blue);
+    font-weight: 600;
+  }
+
+  &-button {
+    align-self: stretch;
+
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 0.8rem 1.6rem;
+    border: none;
+    border-radius: 3px;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background-color: rgba(42, 88, 254, 0.8);
+    }
+
+    &:active {
+      transform: scale(1.04);
+    }
+  }
+}
+
+.product__detail {
+  &-image {
+    height: 100%;
+    width: 50%;
+  }
+
+  &-information {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+
+    &-name {
+      font-size: 2.4rem;
+    }
+
+    &-price {
+      color: var(--color-blue);
+      font-size: 2.4rem;
+      margin-top: 1rem;
+      margin-bottom: 5rem;
+    }
+
+    &-add {
+      background-color: var(--color-blue);
+      color: var(--color-white);
+      font-size: 1.8rem;
+      font-weight: 600;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 4px;
+      transition: all 0.2s;
+      margin-bottom: 2rem;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        background-color: rgba(42, 88, 254, 0.8);
+      }
+
+      &:active {
+        transform: scale(1.04);
+      }
+    }
+
+    &-description {
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
+  }
+}
