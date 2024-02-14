@@ -1,42 +1,36 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { commitSortOption } from "./slice";
+import { useAppDispatch } from "../app/hooks";
 
 export const FilterSort = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, watch } = useForm();
+  const dispatch = useAppDispatch();
 
-  const onSubmit = (data: unknown) => console.log(data);
-
-  // Get the selected gender from the form data
-  //   const selectedOption = watch("sortBy");
+  useEffect(() => {
+    if (watch("option")) dispatch(commitSortOption(watch("option")));
+  }, [watch("option")]);
 
   return (
     <div className="filter__sort">
       <span className="filter__sort-label">Sort By</span>
-      <form className="filter__sort-box" onSubmit={handleSubmit(onSubmit)}>
+      <form className="filter__sort-box">
         <label>
-          <input type="radio" value="Old to new" {...register("sortBy")} />
+          <input {...register("option")} value="oldToNew" type="radio" />
           Old to new
         </label>
         <label>
-          <input type="radio" value="New to old" {...register("sortBy")} />
+          <input {...register("option")} value="newToOld" type="radio" />
           New to old
         </label>
         <label>
-          <input
-            type="radio"
-            value="Price high to low"
-            {...register("sortBy")}
-          />
+          <input {...register("option")} value="highToLow" type="radio" />
           Price high to low
         </label>
         <label>
-          <input
-            type="radio"
-            value="Price low to high"
-            {...register("sortBy")}
-          />
+          <input {...register("option")} value="lowToHigh" type="radio" />
           Price low to high
         </label>
-        {/* {selectedOption && <p>Selected Gender: {selectedOption}</p>} */}
       </form>
     </div>
   );

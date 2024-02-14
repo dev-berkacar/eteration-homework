@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
-import { ProductType } from "./slice";
+import { ProductType, commitCartItems } from "./slice";
+import { useDispatch } from "react-redux";
 
-export const Product = (state: ProductType) => {
+export const Product = (state: Partial<ProductType>) => {
   const { id, name, price, image, description } = state;
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = () => {
+    dispatch(commitCartItems({ type: "add", payload: { name, price, id } }));
+  };
+
   return (
     <div className="product">
       <Link
@@ -19,7 +27,9 @@ export const Product = (state: ProductType) => {
         <span className="product__information-price">{price} ₺</span>
         <span className="product__information-name">{name}</span>
       </Link>
-      <button className="product-add">Add to Cart</button>
+      <button onClick={handleAddItem} className="product-add">
+        Add to Cart
+      </button>
     </div>
   );
 };

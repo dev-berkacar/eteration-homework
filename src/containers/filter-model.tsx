@@ -1,44 +1,68 @@
 import { useForm } from "react-hook-form";
-import { FilterSearch } from "../components/filter-search";
-
-type FormTypes = {
-  model1: boolean;
-  model2: boolean;
-  model3: boolean;
-};
+import { useAppSelector } from "../app/hooks";
+import Icon from "../components/Icon";
+import { ProductType } from "./slice";
+import { useState } from "react";
 
 export const FilterModel = () => {
-  const { register, handleSubmit, watch } = useForm<FormTypes>({
-    defaultValues: {
-      model1: false,
-      model2: false,
-      model3: false,
-    },
-  });
+  const { register } = useForm();
 
-  const onSubmit = (data: unknown) => console.log(data);
+  const products = useAppSelector((state) => state.global.products);
 
-  // Get the selected gender from the form data
-  const selectedBrands = watch(["model1", "model2", "model3"]);
-  console.log(selectedBrands);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredModel, setFilteredModel] = useState<ProductType[]>();
+
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const query = event.target.value.trim().toLowerCase();
+    setSearchQuery(query);
+    const filtered = products.filter((product) =>
+      product.model.toLowerCase().includes(query)
+    );
+    setFilteredModel(filtered);
+  };
 
   return (
     <div className="filter__model">
       <span className="filter__model-label">Model</span>
-      <form className="filter__model-box" onSubmit={handleSubmit(onSubmit)}>
-        <FilterSearch />
-        <label>
-          <input type="checkbox" {...register("model1")} />
-          11
-        </label>
-        <label>
-          <input type="checkbox" {...register("model2")} />
-          12 Pro
-        </label>
-        <label>
-          <input type="checkbox" {...register("model3")} />
-          13 Pro Max
-        </label>
+      <form className="filter__model-box">
+        <div className="filter__search">
+          <button className="filter__search__button">
+            <div className="filter__search__icon">
+              <Icon color="#999" size={16} icon="magnifying-glass" />
+            </div>
+          </button>
+          <input
+            {...register(`searchModel`)}
+            type="text"
+            onChange={handleSearchInputChange}
+            value={searchQuery}
+            className="filter__search__input"
+            placeholder="Search"
+          />
+        </div>
+        {filteredModel === undefined
+          ? products.map((product) => (
+              <label>
+                <input
+                  {...register(`option`)}
+                  value={product.model}
+                  type="checkbox"
+                />
+                {product.model}
+              </label>
+            ))
+          : filteredModel?.map((product) => (
+              <label>
+                <input
+                  {...register(`option`)}
+                  value={product.model}
+                  type="checkbox"
+                />
+                {product.model}
+              </label>
+            ))}
       </form>
     </div>
   );

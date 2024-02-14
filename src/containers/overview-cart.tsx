@@ -1,39 +1,50 @@
+import { useDispatch } from "react-redux";
+import { ProductType, commitCartItems } from "./slice";
+import { useAppSelector } from "../app/hooks";
+
 export const OverviewCart = () => {
+  const dispatch = useDispatch();
+  const cartItems = useAppSelector((state) => state.global.cartItems);
+
+  const handleAddItem = (item: ProductType) => {
+    dispatch(commitCartItems({ type: "add", payload: item }));
+  };
+
+  const handleRemoveItem = (itemId: string) => {
+    dispatch(commitCartItems({ type: "delete", payload: itemId }));
+  };
+
   return (
     <div className="overview__cart">
       <span className="overview__cart-label">Cart</span>
       <div className="overview__cart-box">
-        <div className="overview__cart__product">
-          <span className="overview__cart__product-name">Samsung s22</span>
-          <span className="overview__cart__product-price">12.000₺</span>
-        </div>
-        <div className="overview__cart__quantity">
-          <button className="overview__cart__quantity-decrement">-</button>
-          <div className="overview__cart__quantity-number">3</div>
-          <button className="overview__cart__quantity-increment">+</button>
-        </div>
-      </div>
-      <div className="overview__cart-box">
-        <div className="overview__cart__product">
-          <span className="overview__cart__product-name">Iphone 14 Pro</span>
-          <span className="overview__cart__product-price">20.000₺</span>
-        </div>
-        <div className="overview__cart__quantity">
-          <button className="overview__cart__quantity-decrement">-</button>
-          <div className="overview__cart__quantity-number">1</div>
-          <button className="overview__cart__quantity-increment">+</button>
-        </div>
-      </div>
-      <div className="overview__cart-box">
-        <div className="overview__cart__product">
-          <span className="overview__cart__product-name">Iphone 12</span>
-          <span className="overview__cart__product-price">8.000₺</span>
-        </div>
-        <div className="overview__cart__quantity">
-          <button className="overview__cart__quantity-decrement">-</button>
-          <div className="overview__cart__quantity-number">5</div>
-          <button className="overview__cart__quantity-increment">+</button>
-        </div>
+        {cartItems.map((item: ProductType) => (
+          <div key={item.id} className="overview__cart__product">
+            <div className="overview__cart__product__flex">
+              <span className="overview__cart__product-name">{item.name}</span>
+              <span className="overview__cart__product-price">
+                {parseFloat(item.price) * item.quantity} ₺
+              </span>
+            </div>
+            <div className="overview__cart__quantity">
+              <button
+                className="overview__cart__quantity-decrement"
+                onClick={() => handleRemoveItem(item.id)}
+              >
+                -
+              </button>
+              <div className="overview__cart__quantity-number">
+                {item.quantity}
+              </div>
+              <button
+                className="overview__cart__quantity-increment"
+                onClick={() => handleAddItem(item)}
+              >
+                +
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -3,6 +3,10 @@
   font-weight: 800;
   text-decoration: none;
 
+  @include respond(phone) {
+    font-size: 2rem;
+  }
+
   &:visited {
     color: inherit;
   }
@@ -13,6 +17,10 @@
   justify-content: flex-start;
   flex: 0 0 42%;
 
+  @include respond(phone) {
+    flex: 0 0 32%;
+  }
+
   &__input {
     font-family: inherit;
     font-size: 1.8rem;
@@ -22,6 +30,10 @@
     padding: 0.8rem 0.8rem 0.8rem 1.2rem;
     width: 40%;
     transition: all 0.2s;
+
+    @include respond(phone) {
+      font-size: 1.4rem;
+    }
 
     &:focus {
       outline: none;
@@ -135,6 +147,10 @@
     width: 22.2rem;
     position: relative;
 
+    @include respond(phone) {
+      width: 18rem;
+    }
+
     > label {
       font-size: 1.4rem;
       font-weight: 400;
@@ -171,7 +187,13 @@
     box-shadow: var(--filter-box-shadow);
     padding: 1.5rem;
     width: 22.2rem;
+    height: 20rem;
     position: relative;
+    overflow: auto;
+
+    @include respond(phone) {
+      width: 13rem;
+    }
 
     > label {
       font-size: 1.4rem;
@@ -209,7 +231,13 @@
     box-shadow: var(--filter-box-shadow);
     padding: 1.5rem;
     width: 22.2rem;
+    height: 20rem;
     position: relative;
+    overflow: auto;
+
+    @include respond(phone) {
+      width: 13rem;
+    }
 
     > label {
       font-size: 1.4rem;
@@ -242,6 +270,10 @@
   cursor: pointer;
   transition: all 0.2s;
   text-decoration: none;
+
+  @include respond(phone) {
+    width: 22rem;
+  }
 
   &:hover {
     transform: scale(1.1);
@@ -315,17 +347,27 @@
 
   &-box {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     background-color: var(--color-white);
     box-shadow: var(--filter-box-shadow);
     padding: 1.5rem;
-    width: 22.2rem;
+    width: 25rem;
   }
 
   &__product {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+
+    &__flex {
+      display: flex;
+      flex-direction: column;
+    }
 
     &-name {
       font-size: 1.2rem;
@@ -394,7 +436,7 @@
     background-color: var(--color-white);
     box-shadow: var(--filter-box-shadow);
     padding: 1.5rem;
-    width: 22.2rem;
+    width: 25rem;
   }
 
   &-total {
@@ -439,6 +481,10 @@
   &-image {
     height: 100%;
     width: 50%;
+
+    @include respond(phone) {
+      width: 100%;
+    }
   }
 
   &-information {
@@ -446,6 +492,18 @@
     display: flex;
     flex-direction: column;
     margin-left: 3rem;
+    margin-bottom: 3rem;
+
+    @include respond(phone) {
+      width: 100%;
+      margin-left: 0;
+      overflow: auto;
+    }
+
+    @include respond(tab-land) {
+      width: 100%;
+      overflow: auto;
+    }
 
     &-name {
       font-size: 2.4rem;
@@ -485,6 +543,26 @@
     &-description {
       font-size: 1.8rem;
       font-weight: 400;
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+
+  > li {
+    margin-right: 5px;
+
+    > button {
+      padding: 8px 12px;
+      color: var(--color-text);
+      background-color: transparent;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
   }
 }
