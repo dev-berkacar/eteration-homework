@@ -23,8 +23,6 @@ export const FilterBrands = () => {
     setFilteredBrand(filtered);
   };
 
-  console.log(watch("option"), "option");
-
   // get filtered brand products
   // get filtered model products
   // concat them

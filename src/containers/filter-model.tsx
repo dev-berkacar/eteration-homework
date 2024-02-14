@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
-import { useAppSelector } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import Icon from "../components/Icon";
-import { ProductType } from "./slice";
-import { useState } from "react";
+import { ProductType, commitFilteredModels } from "./slice";
+import { useState, useEffect } from "react";
 
 export const FilterModel = () => {
+  const dispatch = useAppDispatch();
   const { register } = useForm();
 
   const products = useAppSelector((state) => state.global.products);
@@ -22,6 +23,10 @@ export const FilterModel = () => {
     );
     setFilteredModel(filtered);
   };
+
+  useEffect(() => {
+    if (filteredModel) dispatch(commitFilteredModels(filteredModel));
+  }, [filteredModel]);
 
   return (
     <div className="filter__model">

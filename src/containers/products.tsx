@@ -10,15 +10,12 @@ export const Products = () => {
 
   const itemsPerPage: number = 12;
   const products = useAppSelector((state) => state.global.products);
-  const cartItems = useAppSelector((state) => state.global.cartItems);
-  const cartTotalPrice = useAppSelector((state) => state.global.cartTotalPrice);
   const filteredProductsByName = useAppSelector(
     (state) => state.global.filteredProductsByName
   );
   const sortOption = useAppSelector((state) => state.global.sortOption);
 
-  console.log(cartItems, "cartItems");
-  console.log(cartTotalPrice, "cartTotalPrice");
+  console.log(products, "products");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -37,7 +34,6 @@ export const Products = () => {
       (objA: ProductType, objB: ProductType) =>
         Number(objB.createdAt) - Number(objA.createdAt)
     );
-    console.log(result);
     dispatch(commitProducts(result));
   }
 
@@ -46,7 +42,6 @@ export const Products = () => {
       (objA: ProductType, objB: ProductType) =>
         Number(objA.createdAt) - Number(objB.createdAt)
     );
-    console.log(result);
     dispatch(commitProducts(result));
   }
 
@@ -54,7 +49,6 @@ export const Products = () => {
     const result = data?.sort(
       (a, b) => parseFloat(b.price) - parseFloat(a.price)
     );
-    console.log(result);
     dispatch(commitProducts(result));
   }
 
@@ -62,7 +56,6 @@ export const Products = () => {
     const result = data?.sort(
       (a, b) => parseFloat(a.price) - parseFloat(b.price)
     );
-    console.log(result);
     dispatch(commitProducts(result));
   }
 
